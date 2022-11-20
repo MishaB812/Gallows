@@ -67,18 +67,18 @@ while True:
             for i in range(len(word)):
                 if user_char in word[i]:
                     user_word[i] = user_char
-                    if ' '.join(user_word) == word:
-                        print('Поздравляем! Вы выиграли!')
-                        break
-            print(' '.join(user_word))
+            print(*user_word)
             print()
-            if user_char in word:
+            if ''.join(user_word) == word:
+                print('Поздравляем! Вы выиграли!\n')
+                break
+            elif user_char in word:
                 print('Вы угадали! Продолжаем дальше...')
             else:
                 print(f'Этой буквы нет в этом слове .( Осталось {6 - errors} попыток')
                 gallow(errors)
                 errors += 1
                 if errors == 7:
-                    print(f'Вы проиграли! Загаданное слово: "{word}"')
+                    print(f'Вы проиграли! Загаданное слово: "{word}"\n')
                     break
 

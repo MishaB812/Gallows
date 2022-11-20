@@ -60,14 +60,20 @@ while True:
     answer = input('Добро пожаловать в игру "Виселица"\nЖелаешь начать игру?: ')
     if answer.lower() == 'да' or answer.lower() == 'д':
         word = choice(word_list)
-        word_prod = set(word)
+        user_word = ['_'] * len(word)
         errors = 0
-        while word_prod:
+        while True:
             user_char = input('Введите букву, чтобы угадать загаданное слово: ')
-            print(word)
-            if user_char in word_prod:
+            for i in range(len(word)):
+                if user_char in word[i]:
+                    user_word[i] = user_char
+                    if ' '.join(user_word) == word:
+                        print('Поздравляем! Вы выиграли!')
+                        break
+            print(' '.join(user_word))
+            print()
+            if user_char in word:
                 print('Вы угадали! Продолжаем дальше...')
-                word_prod.remove(user_char)
             else:
                 print(f'Этой буквы нет в этом слове .( Осталось {6 - errors} попыток')
                 gallow(errors)
@@ -75,5 +81,4 @@ while True:
                 if errors == 7:
                     print(f'Вы проиграли! Загаданное слово: "{word}"')
                     break
-        else:
-            print(f'Поздравляем! Вы выиграли! Загаданное слово {word}')
+
